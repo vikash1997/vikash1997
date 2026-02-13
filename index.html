@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Valentine's Day Surprise for You! ❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right top, #ff9a9e, #fad0c4, #fad0c4, #ffd1ff);
+            color: #4a4a4a;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .heart-button {
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+            outline: none;
+        }
+
+        .heart-button:hover {
+            background-color: #d81b60;
+            transform: translateY(-3px);
+        }
+
+        .heart-button:active {
+            transform: translateY(0);
+        }
+
+        #surpriseMessage {
+            margin-top: 30px;
+            font-size: 1.4em;
+            color: #e91e63;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Hearts Decoration */
+        .heart {
+            position: absolute;
+            background-color: #ff6b81;
+            transform: rotate(-45deg);
+            animation: float 10s ease-in-out infinite;
+            opacity: 0;
+            z-index: 1;
+        }
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ff6b81;
+            border-radius: 50%;
+        }
+        .heart:before {
+            top: -50%;
+            left: 0;
+        }
+        .heart:after {
+            left: 50%;
+            top: 0;
+        }
+
+        /* Animation for floating hearts */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(-45deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Valentine's Day, Monika!</h1>
+        <p>
+            You mean the world to me, and I wanted to do something special to show you just how much I care.
+            This little page is just for you, filled with all my love!
+        </p>
+        <p>
+            Click the heart below to reveal a special message! ❤️
+        </p>
+        <button class="heart-button" onclick="revealSurprise()">
+            Click Me!
+        </button>
+        <p id="surpriseMessage">
+            My cutie pie Monika, every day with you is a gift. You fill my life with joy, laughter, and endless love. Thank you for being you. I love you more than words can say! Let's make this Valentine's Day unforgettable!
+            <br><br>
+            Love, <br>
+            [Your Name]
+        </p>
+    </div>
+
+    <script>
+        function revealSurprise() {
+            const surpriseMessage = document.getElementById('surpriseMessage');
+            const button = document.querySelector('.heart-button');
+
+            if (surpriseMessage.style.display === 'none' || surpriseMessage.style.display === '') {
+                surpriseMessage.style.display = 'block';
+                button.textContent = 'You are the best!';
+                button.style.backgroundColor = '#4CAF50'; // Change color after click
+                button.style.boxShadow = '0 5px 15px rgba(76, 175, 80, 0.4)';
+            } else {
+                // Optional: You can add another action here if they click again
+                // For now, it just changes the text slightly.
+                button.textContent = 'Still the best!';
+            }
+        }
+
+        // Function to create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.body.appendChild(heart);
+
+            heart.style.width = Math.random() * 20 + 10 + 'px'; // 10-30px
+            heart.style.height = heart.style.width;
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 6 + 4 + 's'; // 4-10s
+            heart.style.animationDelay = Math.random() * 2 + 's';
+
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        // Create hearts every 300ms
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
